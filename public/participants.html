@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participants - Vibe Coding Tournament</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-code"></i>
+            </div>
+            <h1>Windsurf Vibe Coding Tournament</h1>
+            <p class="subtitle">Registered Participants</p>
+        </header>
+        
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="participants.html" class="active">View Participants</a>
+        </nav>
+
+        <section class="participants-section">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> Waitlist Participants</h2>
+                <div class="stats">
+                    <span class="stat-badge">
+                        <i class="fas fa-user-check"></i>
+                        Total: <strong id="total-count">0</strong>
+                    </span>
+                </div>
+            </div>
+
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner fa-spin"></i> Loading participants...
+            </div>
+
+            <div id="error-message" class="error-message" style="display: none;"></div>
+
+            <div class="table-container">
+                <table id="participants-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th><i class="fas fa-user"></i> Nickname</th>
+                            <th><i class="fas fa-envelope"></i> Email</th>
+                            <th><i class="fas fa-map-marker-alt"></i> City</th>
+                            <th><i class="fas fa-clock"></i> Registered</th>
+                        </tr>
+                    </thead>
+                    <tbody id="participants-body">
+                        <!-- Participants will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <i class="fas fa-inbox"></i>
+                <h3>No participants yet</h3>
+                <p>Be the first to join the waitlist!</p>
+                <a href="index.html" class="btn-primary">Join Now</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Windsurf Vibe Coding Tournament. All rights reserved.</p>
+            <p>Powered by Windsurf AI</p>
+        </footer>
+    </div>
+
+    <script type="module" src="../src/participants.js"></script>
+</body>
+</html>

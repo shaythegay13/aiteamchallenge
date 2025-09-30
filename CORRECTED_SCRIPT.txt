@@ -1,0 +1,67 @@
+// CORRECTED GOOGLE APPS SCRIPT
+// Copy everything below and replace ALL code in your Apps Script editor
+
+function doPost(e) {
+  try {
+    // Get the active spreadsheet and sheet
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Sheet1');
+    
+    // If Sheet1 doesn't exist, create it
+    if (!sheet) {
+      sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet('Sheet1');
+    }
+    
+    // Check if headers exist, if not add them
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(['Timestamp', 'Email', 'Nickname', 'City']);
+      sheet.getRange('A1:D1').setFontWeight('bold');
+    }
+    
+    // Parse the incoming data
+    var data = JSON.parse(e.postData.contents);
+    
+    // Get current timestamp
+    var timestamp = new Date();
+    
+    // Append the data to the sheet
+    sheet.appendRow([
+      timestamp,
+      data.email,
+      data.nickname,
+      data.city
+    ]);
+    
+    // Return success response
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        'status': 'success',
+        'message': 'Data added successfully'
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    // Return error response
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        'status': 'error',
+        'message': error.toString()
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// Test function to verify the script works
+function testScript() {
+  var testData = {
+    postData: {
+      contents: JSON.stringify({
+        email: 'test@example.com',
+        nickname: 'TestUser',
+        city: 'Test City'
+      })
+    }
+  };
+  
+  var result = doPost(testData);
+  Logger.log(result.getContent());
+}

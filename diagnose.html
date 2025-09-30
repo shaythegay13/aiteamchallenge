@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheets Diagnostic</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .diagnostic {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .step {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #6c63ff;
+            border-radius: 5px;
+        }
+        .check {
+            margin: 10px 0;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .pending { background: #ffc107; color: #000; }
+        .success { background: #28a745; color: #fff; }
+        .error { background: #dc3545; color: #fff; }
+        button {
+            padding: 10px 20px;
+            background: #6c63ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #5a52d5; }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+        .info-box {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="diagnostic">
+        <h1>🔍 Google Sheets Integration Diagnostic</h1>
+        
+        <div class="info-box">
+            <strong>📋 Current Configuration:</strong><br>
+            <strong>Script URL:</strong> <code id="script-url">https://script.google.com/macros/s/AKfycbyPjpBmb-R_Z3ElKBhuUugUmQVxC1SXkYK3o34MtEv3PFC83pzezTN2W3FISlkDMQZx/exec</code><br>
+            <strong>Google Sheet:</strong> <a href="https://docs.google.com/spreadsheets/d/1eaI_NM6FVCUjIge33LCIsKMcSN9FHm8Z_UEYMbrLsKM/" target="_blank">Open Sheet</a>
+        </div>
+
+        <div class="step">
+            <h3>Step 1: Verify Google Apps Script Setup</h3>
+            <p>Check these items in your Google Sheet:</p>
+            
+            <div class="check">
+                <input type="checkbox" id="check1"> 
+                <label for="check1">I opened Extensions → Apps Script in my Google Sheet</label>
+            </div>
+            
+            <div class="check">
+                <input type="checkbox" id="check2"> 
+                <label for="check2">I pasted the doPost() script code</label>
+            </div>
+            
+            <div class="check">
+                <input type="checkbox" id="check3"> 
+                <label for="check3">I clicked Deploy → New deployment</label>
+            </div>
+            
+            <div class="check">
+                <input type="checkbox" id="check4"> 
+                <label for="check4">I selected "Web app" as the deployment type</label>
+            </div>
+            
+            <div class="check">
+                <input type="checkbox" id="check5"> 
+                <label for="check5">I set "Who has access" to <strong>Anyone</strong></label>
+            </div>
+            
+            <div class="check">
+                <input type="checkbox" id="check6"> 
+                <label for="check6">I authorized the script when prompted</label>
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>Step 2: Test the Connection</h3>
+            <button onclick="testConnection()">🧪 Test Connection</button>
+            <div id="test-result" style="margin-top: 10px;"></div>
+        </div>
+
+        <div class="step">
+            <h3>Step 3: Send Test Data</h3>
+            <input type="email" id="test-email" placeholder="test@example.com" style="padding: 8px; width: 200px;">
+            <input type="text" id="test-nickname" placeholder="TestUser" style="padding: 8px; width: 150px;">
+            <input type="text" id="test-city" placeholder="Test City" style="padding: 8px; width: 150px;">
+            <button onclick="sendTestData()">📤 Send to Google Sheet</button>
+            <div id="send-result" style="margin-top: 10px;"></div>
+        </div>
+
+        <div class="step">
+            <h3>❌ If Nothing Works - Alternative Setup</h3>
+            <p>If the script still doesn't work, here's what to do:</p>
+            <ol>
+                <li>Open your Google Sheet: <a href="https://docs.google.com/spreadsheets/d/1eaI_NM6FVCUjIge33LCIsKMcSN9FHm8Z_UEYMbrLsKM/" target="_blank">Click here</a></li>
+                <li>Click <strong>Extensions → Apps Script</strong></li>
+                <li>Delete any existing code</li>
+                <li>Copy the script below and paste it:</li>
+            </ol>
+            
+            <button onclick="copyScript()">📋 Copy Script to Clipboard</button>
+            
+            <pre id="script-code">function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Sheet1');
+    
+    if (!sheet) {
+      sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet('Sheet1');
+    }
+    
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(['Timestamp', 'Email', 'Nickname', 'City']);
+      sheet.getRange('A1:D1').setFontWeight('bold');
+    }
+    
+    var data = JSON.parse(e.postData.contents);
+    var timestamp = new Date();
+    
+    sheet.appendRow([
+      timestamp,
+      data.email,
+      data.nickname,
+      data.city
+    ]);
+    
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        'status': 'success',
+        'message': 'Data added successfully'
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        'status': 'error',
+        'message': error.toString()
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}</pre>
+
+            <ol start="5">
+                <li>Click <strong>Deploy → New deployment</strong></li>
+                <li>Click gear icon ⚙️ → Select <strong>Web app</strong></li>
+                <li><strong>Execute as:</strong> Me</li>
+                <li><strong>Who has access:</strong> Anyone</li>
+                <li>Click <strong>Deploy</strong></li>
+                <li>Click <strong>Authorize access</strong> and follow prompts</li>
+                <li><strong>Copy the new Web App URL</strong> and paste it below:</li>
+            </ol>
+            
+            <input type="text" id="new-url" placeholder="Paste new Web App URL here" style="width: 100%; padding: 10px; margin: 10px 0;">
+            <button onclick="updateURL()">✅ Update Form with New URL</button>
+            <div id="update-result" style="margin-top: 10px;"></div>
+        </div>
+    </div>
+
+    <script>
+        const CURRENT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyPjpBmb-R_Z3ElKBhuUugUmQVxC1SXkYK3o34MtEv3PFC83pzezTN2W3FISlkDMQZx/exec';
+
+        function testConnection() {
+            const resultDiv = document.getElementById('test-result');
+            resultDiv.innerHTML = '<span class="status pending">Testing...</span>';
+            
+            fetch(CURRENT_SCRIPT_URL, {
+                method: 'GET',
+                mode: 'no-cors'
+            })
+            .then(() => {
+                resultDiv.innerHTML = '<span class="status success">✓ URL is reachable</span><br><small>Note: With no-cors mode, we can\'t read the response, but no error means the URL exists.</small>';
+            })
+            .catch(error => {
+                resultDiv.innerHTML = '<span class="status error">✗ Connection failed</span><br><small>' + error.message + '</small>';
+            });
+        }
+
+        function sendTestData() {
+            const email = document.getElementById('test-email').value || 'test@example.com';
+            const nickname = document.getElementById('test-nickname').value || 'TestUser';
+            const city = document.getElementById('test-city').value || 'Test City';
+            const resultDiv = document.getElementById('send-result');
+            
+            resultDiv.innerHTML = '<span class="status pending">Sending...</span>';
+            
+            const data = { email, nickname, city };
+            
+            fetch(CURRENT_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                resultDiv.innerHTML = '<span class="status success">✓ Data sent!</span><br><small>Check your Google Sheet. If data appears, it works! If not, the script may need to be redeployed.</small>';
+            })
+            .catch(error => {
+                resultDiv.innerHTML = '<span class="status error">✗ Send failed</span><br><small>' + error.message + '</small>';
+            });
+        }
+
+        function copyScript() {
+            const scriptCode = document.getElementById('script-code').textContent;
+            navigator.clipboard.writeText(scriptCode).then(() => {
+                alert('✅ Script copied to clipboard! Now paste it in Google Apps Script.');
+            });
+        }
+
+        function updateURL() {
+            const newURL = document.getElementById('new-url').value.trim();
+            const resultDiv = document.getElementById('update-result');
+            
+            if (!newURL || !newURL.includes('script.google.com')) {
+                resultDiv.innerHTML = '<span class="status error">✗ Invalid URL</span>';
+                return;
+            }
+            
+            resultDiv.innerHTML = '<span class="status success">✓ URL looks valid!</span><br><small>Copy this URL and tell me - I\'ll update the form files.</small>';
+        }
+    </script>
+</body>
+</html>

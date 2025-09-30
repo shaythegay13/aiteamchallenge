@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Coding Tournament - Registration</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-code"></i>
+            </div>
+            <h1>Windsurf Vibe Coding Tournament</h1>
+            <p class="subtitle">Join the Ultimate Coding Battle</p>
+        </header>
+        
+        <nav class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="participants.html">View Participants</a>
+        </nav>
+
+        <section class="event-info">
+            <h2><i class="fas fa-trophy"></i> Get Ready To Vibe!</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>What is Vibe Battle?</h3>
+                    <p>The "Vibe Battle" is a 20x20 competition showcasing AI-assisted coding versus traditional coding. Non-technical Vibe Coders using AI tools compete against experienced coders developing without AI. The secret ingredient? Vibe Coding with Windsurf!</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Competition Structure</h3>
+                    <p><strong>Teams:</strong> 20 non-technical Vibe Coders using AI VS 20 experienced coders without AI.<br><strong>Challenge:</strong> Create a fully functional web application based on a predefined business idea within the time limit.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Event Schedule</h3>
+                    <p><strong>6:00 PM</strong> - Registration<br><strong>6:15 PM</strong> - Rules Briefing<br><strong>7:00 PM</strong> - Competition (60 min)<br><strong>8:00 PM</strong> - Submission Deadline<br><strong>9:15 PM</strong> - Awards Ceremony</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Judging Criteria</h3>
+                    <p>Submissions scored 0-300 points based on: <strong>Functionality</strong>, <strong>Innovation/Creativity</strong>, <strong>Design & UX</strong>, and <strong>Completion & Speed</strong>. Highest score wins!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="prizes-section">
+            <h2><i class="fas fa-gift"></i> Prizes & Awards</h2>
+            <div class="prizes-grid">
+                <div class="prize-card highlight">
+                    <div class="prize-icon">🥇</div>
+                    <h3>1st Place</h3>
+                    <p><strong>1 Year Windsurf Pro</strong><br>+ 3000 Credits</p>
+                </div>
+                <div class="prize-card">
+                    <div class="prize-icon">🥈</div>
+                    <h3>2nd Place</h3>
+                    <p><strong>3 Months Windsurf Pro</strong><br>+ 1500 Credits</p>
+                </div>
+                <div class="prize-card">
+                    <div class="prize-icon">🥉</div>
+                    <h3>3rd Place</h3>
+                    <p><strong>3 Months Windsurf Pro</strong><br>+ 1000 Credits</p>
+                </div>
+                <div class="prize-card">
+                    <div class="prize-icon">🏆</div>
+                    <h3>4th & 5th Place</h3>
+                    <p><strong>3 Months Windsurf Pro</strong><br>+ 1000/500 Credits</p>
+                </div>
+            </div>
+            <p class="prize-note">Top 5 from winning team receive prizes. Top 5 from losing team also receive 3 months Pro + 500 credits!</p>
+        </section>
+
+        <section class="registration">
+            <h2><i class="fas fa-clipboard-list"></i> Join the Waitlist</h2>
+            <p class="form-description">Be the first to know when registration opens! Sign up now to secure your spot.</p>
+            
+            <form id="waitlist-form" class="waitlist-form">
+                <div class="form-group">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i> Email Address *
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="your.email@example.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="nickname">
+                        <i class="fas fa-user"></i> Nickname *
+                    </label>
+                    <input 
+                        type="text" 
+                        id="nickname" 
+                        name="nickname" 
+                        placeholder="Your coding alias"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="city">
+                        <i class="fas fa-map-marker-alt"></i> City *
+                    </label>
+                    <input 
+                        type="text" 
+                        id="city" 
+                        name="city" 
+                        placeholder="Your city"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Join Waitlist
+                </button>
+            </form>
+
+            <div id="form-message" class="form-message"></div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Windsurf Vibe Coding Tournament. All rights reserved.</p>
+            <p>Powered by Windsurf AI</p>
+        </footer>
+    </div>
+
+    <script src="../src/main-google-sheets.js"></script>
+</body>
+</html>

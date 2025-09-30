@@ -1,0 +1,24 @@
+{
+  "name": "vibe-coding-tournament",
+  "version": "1.0.0",
+  "description": "Windsurf Vibe Coding Tournament Registration Page",
+  "main": "public/index.html",
+  "scripts": {
+    "start": "npx http-server public -p 8080 -o",
+    "dev": "npx live-server public",
+    "build": "echo 'No build step required - static site'",
+    "deploy": "echo 'Deploy to your preferred hosting service (Netlify, Vercel, GitHub Pages, etc.)'"
+  },
+  "keywords": [
+    "coding-competition",
+    "tournament",
+    "registration",
+    "windsurf"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
+  }
+}
